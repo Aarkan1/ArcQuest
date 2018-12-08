@@ -2,20 +2,29 @@ body > div {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  box-shadow: inset black 0 0 10px 4px;
 }
 .bg{
-  background-color: rgb(163, 206, 241);
+  position: absolute;
+  background-image: url('https://zumto.com/public/anonymous/frigidmajorivorybilledwoodpecker?g=aHR0cHM6Ly90aHVtYnMuZ2Z5Y2F0LmNvbS9GcmlnaWRNYWpvckl2b3J5YmlsbGVkd29vZHBlY2tlci1zaXplX3Jlc3RyaWN0ZWQuZ2lm');
+  background-size: contain;
+  background-position: 50% 50%;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  filter: blur(3px);
 }
 
 main {
   flex: 1;
-  background-color: white;
 }
 
 .navbar, main, footer{
+  background-color: rgba(255, 255, 255, 0.9);
   border: solid darkgray;
-  border-width: 1px;
-  box-shadow: 0 0 5px;
+  border-width: 3px;
+  box-shadow: 0 0 5px 2px;
+  border-radius: 15px;
 }
 
 .dropdown-item, .remove-band, .remove-musician {
@@ -23,7 +32,7 @@ main {
 }
 
 /* 
-    GAMEBOARD
+    TIC TAC TOE
 */
 .gameboard{
   margin: 0 auto 5vh;

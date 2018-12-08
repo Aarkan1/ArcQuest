@@ -1,0 +1,61 @@
+body > div {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.bg{
+  background-color: rgb(163, 206, 241);
+}
+
+main {
+  flex: 1;
+  background-color: white;
+}
+
+.navbar, main, footer{
+  border: solid darkgray;
+  border-width: 1px;
+  box-shadow: 0 0 5px;
+}
+
+.dropdown-item, .remove-band, .remove-musician {
+  cursor:pointer;
+}
+
+/* 
+    GAMEBOARD
+*/
+.gameboard{
+  margin: 0 auto 5vh;
+  text-align: center;
+  font-size: 10vw;
+  line-height: 1%;
+}
+.tile{
+  cursor: pointer;
+  padding-bottom: 4%;
+  width:  10vw;
+  height: 10vw;
+  border: solid black;  
+}
+#turn{
+  display: block;
+  text-align: center;
+}
+.btn.reset{
+  align-self: center;
+}
+
+/* CHAT ROOM */
+
+.net-msg{
+  height: 55vh;
+  overflow-y: scroll;
+  transform: rotate(180deg);
+  direction: rtl;
+}
+.sent-msg{
+  transform: rotate(180deg);
+  direction: ltr;
+  word-wrap: break-word;
+}

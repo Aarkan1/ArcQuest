@@ -1,25 +1,47 @@
-body > div {
+* {
+  box-sizing: border-box;
+}body{
+  background-color: black;
+}
+
+body>div {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  box-shadow: inset black 0 0 10px 4px;
+  /* box-shadow: inset black 0 0 10px 4px; */
+  position: relative;
 }
-.bg{
+
+.bg {
   position: absolute;
-  background-image: url('https://zumto.com/public/anonymous/frigidmajorivorybilledwoodpecker?g=aHR0cHM6Ly90aHVtYnMuZ2Z5Y2F0LmNvbS9GcmlnaWRNYWpvckl2b3J5YmlsbGVkd29vZHBlY2tlci1zaXplX3Jlc3RyaWN0ZWQuZ2lm');
-  background-size: contain;
-  background-position: 50% 50%;
+  background-image: url('https://www.learnetic.com/wp-content/uploads/2016/12/Abstract-network-connection-background-488611584_4212x2369.jpeg');
+  background-size: cover;
+  background-position: center;
   width: 100%;
   height: 100%;
   z-index: -1;
-  filter: blur(3px);
+  filter: blur(4px);
 }
 
 main {
   flex: 1;
 }
 
-.navbar, main, footer{
+.content {
+  position: relative;
+  display: flex;
+  max-width: 1100px;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  padding: 0 3%;
+  align-self: center;
+}
+
+
+.navbar,
+main,
+footer {
   background-color: rgba(255, 255, 255, 0.9);
   border: solid darkgray;
   border-width: 3px;
@@ -27,44 +49,87 @@ main {
   border-radius: 15px;
 }
 
-.dropdown-item, .remove-band, .remove-musician {
-  cursor:pointer;
+.dropdown-item,
+.remove-band,
+.remove-musician {
+  cursor: pointer;
 }
 
 /* 
     TIC TAC TOE
 */
-.gameboard{
+.gameboard {
   margin: 0 auto 5vh;
   text-align: center;
   font-size: 10vw;
   line-height: 1%;
 }
-.tile{
+
+.tile {
   cursor: pointer;
   padding-bottom: 4%;
-  width:  10vw;
+  width: 10vw;
   height: 10vw;
-  border: solid black;  
+  border: solid black;
 }
-#turn{
+
+#turn {
   display: block;
   text-align: center;
 }
-.btn.reset{
+
+.btn.reset {
   align-self: center;
 }
 
 /* CHAT ROOM */
-
-.net-msg{
-  height: 55vh;
+.chat-page{
+  flex-direction: column;
+  height: 70vh;
+}
+.net-msg {
+  flex: 1;
+  /* height: 55vh; */
   overflow-y: scroll;
   transform: rotate(180deg);
-  direction: rtl;
+  direction: rtl;background-color: #fff;
 }
-.sent-msg{
+
+.sent-msg {
   transform: rotate(180deg);
   direction: ltr;
   word-wrap: break-word;
+}
+
+/* 
+    GAMES
+*/
+.game-window{
+  height: 70vh;
+  flex-direction: column;
+}
+
+/* 
+    GAME BREAKOUT
+*/
+.game-breakout-window{
+  flex: 1;
+  margin-bottom: 1%;
+  border-radius: 15px;
+  background-color: black;
+}
+
+
+
+/* 
+    MEDIA QUERIES
+*/
+
+@media screen and (max-width: 767px) {
+  * {
+    font-size: 3em !important;
+  }
+  h4{
+    font-size: 3em !important;
+  }
 }

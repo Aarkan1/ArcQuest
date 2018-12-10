@@ -11,19 +11,7 @@ class GamePage extends Component {
 
         this.showLogin = true;
         this.showGameboard = false;
-
- 
-
     }
-
-
-
-
-
-
-
-
-
     
     gotoLogin() {
         this.showGameboard = false;

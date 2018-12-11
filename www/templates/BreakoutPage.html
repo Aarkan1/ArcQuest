@@ -1,9 +1,11 @@
 <div class="game-window d-flex">
     <h4>Breakout</h4>
 
-
-    <iframe src="../Games/Breakout/index.html" class="game-breakout-window" frameborder="0"></iframe>
-    <!-- <div class="game-breakout-window">
-        ${!this.showBreakout ? `` : `${this.breakoutGame}`}
-        <button type="button" class="btn-start-breakout btn btn-info">Start Game</button>
-    </div> -->
+    <!-- Toogle game frame on button click -->
+    ${this.showBreakout ? `` : `
+    <button type="button" class="btn-start-breakout btn btn-info">Start Game</button>
+    `}
+    ${!this.showBreakout ? `` :
+    `<iframe src="../Games/Breakout/index.html" class="game-breakout-window" frameborder="0"></iframe>`
+    }
+</div>

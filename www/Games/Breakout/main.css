@@ -1,6 +1,11 @@
 *{
     box-sizing: border-box;
 }
+body{
+    overflow: hidden;
+    margin: 0;
+}
 #game-breakout{
+    padding: 0;
     cursor: none;
 }

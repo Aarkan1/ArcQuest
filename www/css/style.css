@@ -113,8 +113,9 @@ footer {
     GAME BREAKOUT
 */
 .game-breakout-window{
+  padding: 0;
   flex: 1;
-  margin-bottom: 1%;
+  margin: 0 0 1%;
   border-radius: 15px;
   background-color: black;
 }

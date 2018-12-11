@@ -5,13 +5,13 @@ class BreakoutPage extends Component {
         this.addEvents({
             'click .btn-start-breakout': 'startBreakout'
         });
-        this.breakoutGame;
+        // boolean toggle
         this.showBreakout = false;
-        
+
     }
-    
-    startBreakout(){
-        this.breakoutGame = new BreakoutGame(this);
+
+    // load game on click
+    startBreakout() {
         this.showBreakout = true;
         this.render();
     }

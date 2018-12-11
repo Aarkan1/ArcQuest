@@ -4,8 +4,8 @@ class BreakoutMain extends Phaser.Scene {
             key: 'BreakoutMain'
         });
 
-        this.width = 500;
-        this.height = 300;
+        this.width = game.config.width;
+        this.height = game.config.height;
 
         this.columns = 10;
         this.rows = 6;
@@ -93,7 +93,7 @@ class BreakoutMain extends Phaser.Scene {
         this.paddle.setScale(this.height / 3000);
 
         // Create the bouncing ball
-        this.ball.img = this.physics.add.image(this.width / 2, this.height / 1.193, 'ball');
+        this.ball.img = this.physics.add.image(this.width / 2, this.height / 1.2, 'ball');
         this.ball.img.setCollideWorldBounds(true).setBounce(1);
         this.ball.img.setScale(this.height / 3000);
         this.ball.onPaddle = true;
@@ -133,6 +133,7 @@ class BreakoutMain extends Phaser.Scene {
     }
     // function handling impact on a brick
     hitBrick(ball, brick) {
+
         this.sound.play('hitBrick');
 
 
@@ -170,7 +171,7 @@ class BreakoutMain extends Phaser.Scene {
     // when ball is out of bounds, it gets placed on default position
     resetBall() {
         this.ball.img.setVelocity(0);
-        this.ball.img.setPosition(this.paddle.x, this.height / 1.193);
+        this.ball.img.setPosition(this.paddle.x, this.height / 1.2);
         this.ball.onPaddle = true;
     }
     // re-enables bricks and updates the counter
@@ -186,6 +187,8 @@ class BreakoutMain extends Phaser.Scene {
 
                 if (brick > 0) {
                     brick = this.physics.add.image(brickX, brickY, this.brickColor[i]).setImmovable();
+                    console.log(brick);
+                    
                     brick.displayWidth = this.width / 13;
                     brick.displayHeight = this.height / 20;
                     brick.data = hits;

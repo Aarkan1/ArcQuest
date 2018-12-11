@@ -18,47 +18,12 @@ class BreakoutMain extends Phaser.Scene {
         this.level = 0;
         this.levels = [];
 
-        // Create levels
-        this.level0 = [
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-        ];
-        this.level1 = [
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 1, 1, 0, 0, 0, 0, 1, 1, 1],
-            [1, 1, 0, 0, 1, 1, 0, 0, 1, 1],
-            [1, 0, 0, 1, 1, 1, 1, 0, 0, 1],
-            [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
-            [2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
-        ];
-        this.level2 = [
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 1, 1, 0, 3, 3, 0, 1, 1, 1],
-            [0, 1, 0, 3, 1, 1, 3, 0, 1, 0],
-            [1, 1, 1, 3, 0, 0, 3, 1, 1, 1],
-            [0, 1, 1, 1, 3, 3, 1, 1, 1, 0],
-            [2, 0, 2, 0, 2, 2, 0, 2, 0, 2]
-        ];
-        this.level3 = [
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
-        ];
-
-        // fill levels array with levels
-        this.levels.push(this.level0);
-        this.levels.push(this.level1);
-        this.levels.push(this.level2);
-        this.levels.push(this.level3);
-
-
+        // Create levels from json
+        $.getJSON("json/levels.json", (data) => {
+            for (let level of data){
+                this.levels.push(level);
+            }
+        });
 
     }
 
@@ -187,8 +152,7 @@ class BreakoutMain extends Phaser.Scene {
 
                 if (brick > 0) {
                     brick = this.physics.add.image(brickX, brickY, this.brickColor[i]).setImmovable();
-                    console.log(brick);
-                    
+
                     brick.displayWidth = this.width / 13;
                     brick.displayHeight = this.height / 20;
                     brick.data = hits;
@@ -205,7 +169,7 @@ class BreakoutMain extends Phaser.Scene {
     printFinalScore() {
         this.scoreText.x = this.width / 3.5;
         this.scoreText.y = this.height / 2.5;
-        this.scoreText.setFontSize( this.height / 10 + 'px');
+        this.scoreText.setFontSize(this.height / 10 + 'px');
         this.scoreText.setText(`Score: ${this.score}`);
         this.ball.img.disableBody(true, true);
         this.paddle.disableBody(true, true);

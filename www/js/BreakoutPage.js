@@ -7,13 +7,16 @@ class BreakoutPage extends Component {
         });
         // boolean toggle
         this.showBreakout = false;
+        this.breakout;
 
     }
 
     // load game on click
     startBreakout() {
         this.showBreakout = true;
+        // this.breakout = new Breakout();
         this.render();
     }
+    
 
 }

@@ -119,6 +119,19 @@ footer {
   border-radius: 15px;
   background-color: black;
 }
+#game-breakout{
+  cursor: none;
+  padding: 0;
+  flex: 1;
+  margin: 0 0 1%;
+  border-radius: 15px;
+  background-color: black;
+}
+.btn-start-breakout{
+  width: 30%;
+  margin-top: 15%;
+  align-self: center;
+}
 
 
 

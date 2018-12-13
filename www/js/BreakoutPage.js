@@ -8,15 +8,25 @@ class BreakoutPage extends Component {
         // boolean toggle
         this.showBreakout = false;
         this.breakout;
+    }
 
+    // restarts game if user leaves page
+    unmount(){
+        this.showBreakout = false;
+        this.breakout = undefined;
+        App.game = undefined;
     }
 
     // load game on click
     startBreakout() {
         this.showBreakout = true;
-        // this.breakout = new Breakout();
+
+        // place game start last in queue
+        // needs to load DOM before starting game
+        setTimeout(() => {
+            this.breakout = new Breakout(this);
+            this.breakout.startGame();
+        },0)
         this.render();
     }
-    
-
 }

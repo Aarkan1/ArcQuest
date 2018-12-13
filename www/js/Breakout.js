@@ -1,9 +1,13 @@
 class Breakout extends Component{
-    constructor() {
+    constructor(page) {
         super();
-        this.width = window.innerWidth;
-        this.height = window.innerHeight;
 
+        // DOM element to render game is in BreakoutPage
+        this.page = page;
+        this.width = page.baseEl.find('#game-breakout').width();
+        this.height = page.baseEl.find('#game-breakout').height();
+
+        // standard phaser config
         this.config = {
             type: Phaser.AUTO,
             width: this.width,
@@ -14,7 +18,10 @@ class Breakout extends Component{
             },
             scene: [BreakoutMain]
         };
-
-        this.game = new Phaser.Game(this.config);
     }
+    // starts game manually
+    startGame(){
+        App.game = new Phaser.Game(this.config);
+    }
+    
 }

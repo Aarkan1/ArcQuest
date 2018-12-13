@@ -4,9 +4,9 @@ class BreakoutMain extends Phaser.Scene {
             key: 'BreakoutMain'
         });
 
-        this.width = window.innerWidth;
-        this.height = window.innerHeight;
-
+        // get game width and height for scaling
+        this.width = App.game.config.width;
+        this.height = App.game.config.height;
         this.columns = 10;
         this.rows = 6;
         this.bricksLeft = 0;
@@ -20,7 +20,7 @@ class BreakoutMain extends Phaser.Scene {
 
         // Create levels from json
         $.getJSON("json/levels.json", (data) => {
-            for (let level of data){
+            for (let level of data) {
                 this.levels.push(level);
             }
         });
@@ -166,6 +166,7 @@ class BreakoutMain extends Phaser.Scene {
             brickY += this.height / 17.5;
         }
     }
+    // prints score when game is finnished
     printFinalScore() {
         this.scoreText.x = this.width / 3.5;
         this.scoreText.y = this.height / 2.5;
@@ -176,7 +177,6 @@ class BreakoutMain extends Phaser.Scene {
     }
     // game loop
     update() {
-
         // if ball goes out of bounds, reset its position
         if (this.ball.img.y > this.height + 100) {
             this.score -= 100;

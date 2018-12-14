@@ -14,7 +14,6 @@ class LoginScreen extends Component {
         this.player;
         this.game;
 
-        Store.socket = io.connect('http://127.0.0.1:3000');
 
         
         Store.socket.on('newGame', (data) => console.log(`${data.name} a started game in ${data.room}`));

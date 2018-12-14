@@ -1,27 +1,28 @@
-class Breakout extends Component{
+class PirateBattles extends Component{
     constructor(page) {
         super();
 
         // DOM element to render game is in BreakoutPage
         this.page = page;
-        this.width = page.baseEl.find('#game-breakout').width();
-        this.height = page.baseEl.find('#game-breakout').height();
+        this.width = page.baseEl.find('#game-piratebattles').width();
+        this.height = page.baseEl.find('#game-piratebattles').height();
 
         // standard phaser config
         this.config = {
             type: Phaser.AUTO,
             width: this.width,
             height: this.height,
-            parent: 'game-breakout',
+            parent: 'game-piratebattles',
+            pixelArt: true,
             physics: {
                 default: 'arcade'
             },
-            scene: [BreakoutMain]
+            scene: [PirateBattlesGame]
         };
     }
     // starts game manually
     startGame(){
-        App.breakoutGame = new Phaser.Game(this.config);
+        App.pirateGame = new Phaser.Game(this.config);
     }
     
 }

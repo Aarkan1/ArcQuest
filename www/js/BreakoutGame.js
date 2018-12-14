@@ -5,8 +5,8 @@ class BreakoutMain extends Phaser.Scene {
         });
 
         // get game width and height for scaling
-        this.width = App.game.config.width;
-        this.height = App.game.config.height;
+        this.width = App.breakoutGame.config.width;
+        this.height = App.breakoutGame.config.height;
         this.columns = 10;
         this.rows = 6;
         this.bricksLeft = 0;

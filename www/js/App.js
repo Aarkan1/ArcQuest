@@ -8,6 +8,10 @@ class App extends Component {
     // only in the App class:
     new Router(this.pageContent);
     $('body').html(this.render());
+
+
+    Store.socket = io.connect('http://127.0.0.1:3000');
+
   }
 
 }

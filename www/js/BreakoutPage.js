@@ -14,7 +14,7 @@ class BreakoutPage extends Component {
     unmount(){
         this.showBreakout = false;
         this.breakout = undefined;
-        App.game = undefined;
+        App.breakoutGame = undefined;
     }
 
     // load game on click

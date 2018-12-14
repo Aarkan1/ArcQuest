@@ -1,0 +1,10 @@
+<div class="game-window d-flex">
+    <h4>Pirate Battles</h4>
+
+    <!-- Toogle game frame on button click -->
+    ${this.showPirateBattles ? `` : `
+    <button type="button" class="btn-start-piratebattles btn btn-info">Start Game</button>
+    `}
+    ${!this.showPirateBattles ? `` : `<div id="game-piratebattles"></div>`}
+  
+</div>

@@ -18,6 +18,7 @@ class ChatPage extends Component {
         this.baseEl.find('.net-msg').prepend(
             `<p class="sent-msg m-0">${msg.name}: ${msg.text}</p>`
         );
+        $('.net-msg').scrollTop($('.net-msg')[0].scrollHeight);
     }
 
     // sends message to server

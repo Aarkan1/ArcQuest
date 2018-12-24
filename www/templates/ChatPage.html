@@ -1,7 +1,9 @@
 <div class="chat-page d-flex">
   <h4>Chat Room</h4>
 
-  <div class="net-msg p-2 pl-3 container border rounded"></div>
+  <div class="net-msg p-2 pl-3 container border rounded">
+    ${this.messages}
+  </div>
 
   <div class="input-group ml-3 mt-2 mb-3">
     <input type="text" class="form-control col-2" id="chat-name" placeholder="Name" aria-label="Recipient's username"

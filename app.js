@@ -10,73 +10,71 @@ const app = express();
 app.use(jsonflex);
 app.use(express.static('www'));
 
-// Create socket.io
+// Create socket.io server
 const server = require('http').createServer(app);
-// const socket = require('socket.io')
-// const io = socket(server);
 const io = require('socket.io')(server);
-
 
 // Initialize socket rooms
 let rooms = 0;
+let global = 'global';
+
+// store connected players
+let piratePlayers = {};
 
 // Create socket connection
 io.on('connection', function (socket) {
-  // Replace with user events 
-  console.log('User connected');
-
-
-  socket.on('msg', (data) => {
-
-    socket.broadcast.emit('return-msg', data);
-  });
-
+  // a user connects
+  console.log('a user connected');
+  // a user disconnects
   socket.on('disconnect', () => {
     console.log('user disconnected');
+    /*
+        PIRATE BATTLES
+    */
+    // remove player from connected list
+    delete piratePlayers[socket.id];
+    // update online players to remove offline player
+    io.emit('disconnect', socket.id);
   });
 
-  // ********************************
-  // Event handlers
-  // Create new game room
-  socket.on('createGame', function (data) {
-    console.log(`${data.name} created a game`);
+  /*
+      PIRATE BATTLES
+  */
+  // create a new player and add it to players list
+  piratePlayers[socket.id] = {
+    playerId: socket.id,
+    rotation: 0,
+    x: Math.floor(Math.random() * 700) + 50,
+    y: Math.floor(Math.random() * 500) + 50,
+    team: Math.floor(Math.random() * 4)
+  };
+  
+  socket.join(global);
+  // send other players data to new player
+  socket.emit('onlinePlayers', {players: piratePlayers});
 
-    socket.join('room-' + ++rooms);
-    socket.emit('newGame', {
-      name: data.name,
-      room: 'room-' + rooms
-    });
-
-    console.log(`room-${rooms}`);
-
-
+  console.log(piratePlayers);
+  
+  
+  // update online players with the new player
+  socket.broadcast.emit('newPlayer', piratePlayers[socket.id]);
+  // update player movement and direction
+  socket.on('playerMovement', (playerMove) => {
+    piratePlayers[socket.id].x = playerMove.x;
+    piratePlayers[socket.id].y = playerMove.y;
+    piratePlayers[socket.id].rotation = playerMove.rotation;
+    // emit movement to all players
+    socket.broadcast.emit('playerMoved', piratePlayers[socket.id]);
   });
-  // Connect player 2
-  socket.on('joinGame', function (data) {
 
-    // check if nsps is correct
-    let room = io.nsps['/'].adapter.rooms[data.room];
-    if (room && room.length === 1) {
-      console.log(`${data.name} joined a game in room-${data.room}`);
-      socket.join(data.room);
-      socket.broadcast.to(data.room).emit('player1', {});
-    } else {
-      socket.emit('err', {
-        message: 'Room is full!'
-      });
-    }
+
+  // when a user sends a message
+  // emit that message to all users
+  socket.on('msg', (data) => {
+
+    io.emit('return-msg', data);
   });
-  // PlayerTurn event
-  socket.on('playerTurn', function (data) {
-    socket.broadcast.to[data.room].emit('turnPlayed', {
-      tile: data.tile,
-      room: data.room
-    });
-  });
-  // game end event
-  socket.on('gameEnded', function (data) {
-    socket.broadcast.to[data.room].emit('gameEnd', data)
-  });
+
 
 });
 

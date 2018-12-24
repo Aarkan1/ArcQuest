@@ -1,4 +1,4 @@
-class PirateBattles extends Component{
+class PirateBattles extends Component {
     constructor(page) {
         super();
 
@@ -10,8 +10,8 @@ class PirateBattles extends Component{
         // standard phaser config
         this.config = {
             type: Phaser.AUTO,
-            width: this.width,
-            height: this.height,
+            width: 768,
+            height: 576,
             parent: 'game-piratebattles',
             pixelArt: true,
             physics: {
@@ -21,8 +21,15 @@ class PirateBattles extends Component{
         };
     }
     // starts game manually
-    startGame(){
+    startGame() {
         App.pirateGame = new Phaser.Game(this.config);
     }
-    
+    // kill the game
+    closeGame() {
+        // App.pirateGame.destroy(true);
+        App.pirateGame.renderer.destroy();
+        App.pirateGame.loop.stop();
+        App.pirateGame.canvas.remove();
+    }
+
 }

@@ -16,9 +16,11 @@ class LoginScreen extends Component {
 
 
         
-        Store.socket.on('newGame', (data) => console.log(`${data.name} a started game in ${data.room}`));
-   
-
+        //  Store.socket = io.connect('http://10.155.90.87:3000');
+        // Store.socket = io.connect('http://127.0.0.1:3000');
+        
+        
+        // Store.socket.on('newGame', (data) => console.log(`${data.name} a started game in ${data.room}`));
     
     }
 
@@ -34,7 +36,7 @@ class LoginScreen extends Component {
             return;
         }
 
-        Store.socket.emit('createGame', {
+        App.socket.emit('createGame', {
             name: name
         });
         this.player = new Player(name, this.P1);
@@ -54,7 +56,7 @@ class LoginScreen extends Component {
             alert('Enter a game ID')
         }
 
-        Store.socket.emit('joinGame', {
+        App.socket.emit('joinGame', {
             name: name,
             room: roomID
         });

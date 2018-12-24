@@ -6,18 +6,27 @@ class ChatPage extends Component {
             'click #chat-send': 'send',
             'keyup #chat-text': 'sendOnEnter'
         });
-
+        this.messages = [];
+        
         // socket eventhandler printing message
-        Store.socket.on('return-msg', (msg) => {
+        App.socket.on('return-msg', (msg) => {
             this.printChat(msg);
         });
     }
-
+    
     // needs css to make chat direction right
     printChat(msg) {
-        this.baseEl.find('.net-msg').prepend(
-            `<p class="sent-msg m-0">${msg.name}: ${msg.text}</p>`
-        );
+        
+        let text = new ChatText(this, msg.name, msg.text);
+        this.messages.unshift(text);
+        // self.render();
+        this.render();
+        
+        console.log(this.messages);
+        
+        // this.baseEl.find('.net-msg').prepend(
+        //     `<p class="sent-msg m-0">${msg.name}: ${msg.text}</p>`
+        // );
     }
 
     // sends message to server
@@ -30,8 +39,7 @@ class ChatPage extends Component {
                 name: chatName,
                 text: chatText.val()
             }
-            this.printChat(msg);
-            Store.socket.emit('msg', msg);
+            App.socket.emit('msg', msg);
             // empty input field
             chatText.val('');
         }

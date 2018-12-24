@@ -5,10 +5,13 @@ class PageContent extends Component {
     this.startPage = new StartPage();
     this.missingPage = new MissingPage();
     this.breakoutPage = new BreakoutPage();
-    this.pirateBattlesPage = new PirateBattlesPage();
+    App.pirateBattlesPage = new PirateBattlesPage();
     this.gamePage = new GamePage();
     this.chatPage = new ChatPage();
     // this.loadMusiciansAndBands();
+
+
+
   }
 
   async loadMusiciansAndBands(){

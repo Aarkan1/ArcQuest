@@ -10,12 +10,13 @@ class PirateBattlesPage extends Component {
         this.piratebattles;
     }
 
-    // restarts game if user leaves page
-    unmount(){
-        this.showPirateBattles = false;
-        this.piratebattles = undefined;
-        App.pirateGame = undefined;
+   // restarts game if user leaves page
+   unmount(){
+    this.showPirateBattles = false;
+    if(this.piratebattles){
+        this.piratebattles.closeGame();
     }
+}
 
     // load game on click
     startPirateBattles() {

@@ -2,9 +2,10 @@
     <h4>Breakout</h4>
 
     <!-- Toogle game frame on button click -->
-    ${this.showBreakout ? `` : `
-    <button type="button" class="btn-start-breakout btn btn-info">Start Game</button>
-    `}
-    ${!this.showBreakout ? `` : `<div id="game-breakout"></div>`}
-  
+        ${App.showBreakout ? `` : `
+            <button type="button" class="btn-start-breakout btn btn-info">Start Game</button>
+            `}
+            ${!App.showBreakout ? `` : `<div id="game-breakout"></div>`}
+    
+    <!-- <button type="button" class="btn-close-breakout btn btn-info">Close Game</button> -->
 </div>

@@ -3,6 +3,11 @@ class StartPage extends Component {
   constructor(){
     super();
     this.addRoute('/', 'Start');
+
+
+    // App.socket = io.connect('http://127.0.0.1:3000');
+    App.socket = io();
+    
   }
 
 

@@ -37,8 +37,9 @@ class BreakoutMain extends Phaser.Scene {
         this.load.image('brickOrange', 'assets/breakout/tileOrange_25.png');
         this.load.image('brickRed', 'assets/breakout/tileRed_26.png');
         this.load.image('brickYellow', 'assets/breakout/tileYellow_26.png');
-        this.load.audio('hitBrick', 'assets/breakout/onBrick.mp3');
-        this.load.audio('hitPaddle', 'assets/breakout/onPaddle.mp3');
+        // load audio
+        this.load.audio('hitBrick', 'assets/breakout/chipLay1.ogg');
+        this.load.audio('hitPaddle', 'assets/breakout/chipLay2.ogg');
 
     }
 
@@ -176,7 +177,8 @@ class BreakoutMain extends Phaser.Scene {
         this.paddle.disableBody(true, true);
     }
     // game loop
-    update() {
+    update(delta) {
+
         // if ball goes out of bounds, reset its position
         if (this.ball.img.y > this.height + 100) {
             this.score -= 100;

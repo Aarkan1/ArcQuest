@@ -23,5 +23,12 @@ class Breakout extends Component{
     startGame(){
         App.breakoutGame = new Phaser.Game(this.config);
     }
-    
+    // kill the game
+    closeGame(){
+        // App.breakoutGame.destroy(true);
+        // App.breakoutGame.scene.remove(BreakoutMain);
+        App.breakoutGame.renderer.destroy();
+        App.breakoutGame.loop.stop();
+        App.breakoutGame.canvas.remove();
+    }
 }

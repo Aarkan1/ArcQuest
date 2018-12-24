@@ -10,7 +10,6 @@ class App extends Component {
     $('body').html(this.render());
 
 
-    Store.socket = io.connect('http://127.0.0.1:3000');
 
   }
 

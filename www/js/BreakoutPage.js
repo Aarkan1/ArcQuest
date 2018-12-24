@@ -3,23 +3,29 @@ class BreakoutPage extends Component {
         super();
         this.addRoute('/breakout', 'Breakout');
         this.addEvents({
-            'click .btn-start-breakout': 'startBreakout'
+            'click .btn-start-breakout': 'startBreakout',
+            'click .btn-close-breakout': 'closeBreakout'
         });
         // boolean toggle
-        this.showBreakout = false;
+        App.showBreakout = false;
         this.breakout;
     }
 
     // restarts game if user leaves page
     unmount(){
-        this.showBreakout = false;
-        this.breakout = undefined;
-        App.breakoutGame = undefined;
+        App.showBreakout = false;
+        if(this.breakout){
+            this.breakout.closeGame();
+        }
+    }
+    
+    closeBreakout(){
+        this.render();
     }
 
     // load game on click
     startBreakout() {
-        this.showBreakout = true;
+        App.showBreakout = true;
 
         // place game start last in queue
         // needs to load DOM before starting game

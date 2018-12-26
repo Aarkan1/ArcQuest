@@ -22,6 +22,11 @@ class Breakout extends Component{
     // starts game manually
     startGame(){
         App.breakoutGame = new Phaser.Game(this.config);
+
+        let e = $.Event('keypress');
+        let code = e.keyCode || e.which;
+        code = 122; // F11
+        $('item').trigger(code);
     }
     // kill the game
     closeGame(){
@@ -32,3 +37,4 @@ class Breakout extends Component{
         App.breakoutGame.canvas.remove();
     }
 }
+

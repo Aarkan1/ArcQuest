@@ -21,13 +21,13 @@ class PirateBattlesPage extends Component {
     // load game on click
     startPirateBattles() {
         this.showPirateBattles = true;
-
+        this.render();
+        
         // place game start last in queue
         // needs to load DOM before starting game
         setTimeout(() => {
             this.piratebattles = new PirateBattles(this);
             this.piratebattles.startGame();
         },0)
-        this.render();
     }
 }

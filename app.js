@@ -17,6 +17,7 @@ const io = require('socket.io')(server);
 // Initialize socket rooms
 let rooms = 0;
 let global = 'global';
+let pirates = 'pirates';
 
 // store connected players
 let piratePlayers = {};
@@ -41,30 +42,29 @@ io.on('connection', function (socket) {
       PIRATE BATTLES
   */
   // create a new player and add it to players list
-  piratePlayers[socket.id] = {
-    playerId: socket.id,
-    rotation: 0,
-    x: Math.floor(Math.random() * 700) + 50,
-    y: Math.floor(Math.random() * 500) + 50,
-    team: Math.floor(Math.random() * 4)
-  };
-  
-  socket.join(global);
-  // send other players data to new player
-  socket.emit('onlinePlayers', {players: piratePlayers});
+  socket.on('pirate', (player) => {
+    socket.join(pirates);
+    piratePlayers[socket.id] = {
+      playerId: socket.id,
+      rotation: player.rotation,
+      x: player.x,
+      y: player.y,
+      team: player.team
+    };
+    // send other players data to new player
+    socket.emit('currentPlayers', piratePlayers);
 
-  console.log(piratePlayers);
-  
-  
-  // update online players with the new player
-  socket.broadcast.emit('newPlayer', piratePlayers[socket.id]);
+    // update online players with the new player
+    socket.broadcast.to(pirates).emit('newPlayer', piratePlayers[socket.id]);
+  });
+
   // update player movement and direction
   socket.on('playerMovement', (playerMove) => {
     piratePlayers[socket.id].x = playerMove.x;
     piratePlayers[socket.id].y = playerMove.y;
     piratePlayers[socket.id].rotation = playerMove.rotation;
     // emit movement to all players
-    socket.broadcast.emit('playerMoved', piratePlayers[socket.id]);
+    socket.broadcast.to(pirates).emit('playerMoved', piratePlayers[socket.id]);
   });
 
 

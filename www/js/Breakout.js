@@ -4,8 +4,8 @@ class Breakout extends Component{
 
         // DOM element to render game is in BreakoutPage
         this.page = page;
-        this.width = page.baseEl.find('#game-breakout').width();
-        this.height = page.baseEl.find('#game-breakout').height();
+        this.width = this.page.baseEl.find('#game-breakout').width();
+        this.height = this.page.baseEl.find('#game-breakout').height();
 
         // standard phaser config
         this.config = {
@@ -22,11 +22,6 @@ class Breakout extends Component{
     // starts game manually
     startGame(){
         App.breakoutGame = new Phaser.Game(this.config);
-
-        let e = $.Event('keypress');
-        let code = e.keyCode || e.which;
-        code = 122; // F11
-        $('item').trigger(code);
     }
     // kill the game
     closeGame(){

@@ -3,15 +3,13 @@ class PirateBattles extends Component {
         super();
 
         // DOM element to render game is in BreakoutPage
-        this.page = page;
-        this.width = page.baseEl.find('#game-piratebattles').width();
-        this.height = page.baseEl.find('#game-piratebattles').height();
+        this.page = page;   
 
         // standard phaser config
         this.config = {
             type: Phaser.AUTO,
-            width: 768,
-            height: 576,
+            width: 3200,
+            height: 3200,
             parent: 'game-piratebattles',
             pixelArt: true,
             physics: {
